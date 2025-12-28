@@ -1,4 +1,4 @@
-### How do you use this Repo for Dashboard...
+# How do you use this Repo for Dashboard...
 
 ### Installation
 
@@ -83,6 +83,70 @@ const navLinks = [
   { name: "Users", path: "/users", icon: Users }, // Add this line
   // ...
 ];
+```
+
+## 📚 Usage Guide
+
+### Using React Hook Form
+Manage form state and validation easily.
+
+```jsx
+import { useForm } from "react-hook-form";
+
+export default function ExampleForm() {
+  const { register, handleSubmit } = useForm();
+  const onSubmit = (data) => console.log(data);
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
+      <input {...register("username")} placeholder="Username" className="p-2 border rounded" />
+      <button type="submit" className="bg-blue-500 text-white p-2 rounded">Submit</button>
+    </form>
+  );
+}
+```
+
+### Using React Query
+Fetch and cache server data efficiently.
+
+```jsx
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+
+export default function DataFetcher() {
+  const { isPending, error, data } = useQuery({
+    queryKey: ['repoData'],
+    queryFn: () =>
+      axios.get('https://api.github.com/repos/tannerlinsley/react-query').then((res) => res.data),
+  });
+
+  if (isPending) return 'Loading...';
+  if (error) return 'An error has occurred: ' + error.message;
+
+  return <div><h1>{data.name}</h1><p>{data.description}</p></div>;
+}
+```
+
+### Using Tailwind Merge (`cn`)
+Use the `cn` utility to merge Tailwind classes and handle conditional logic without conflicts.
+
+```jsx
+import { cn } from "../lib/utils";
+
+export default function Button({ className, variant = "primary", children }) {
+  return (
+    <button 
+      className={cn(
+        "px-4 py-2 rounded font-medium transition-colors", // Base classes
+        variant === "primary" && "bg-blue-500 text-white hover:bg-blue-600",
+        variant === "secondary" && "bg-gray-200 text-gray-800 hover:bg-gray-300",
+        className // Allow overriding classes via props
+      )}
+    >
+      {children}
+    </button>
+  );
+}
 ```
 
 ### Dependencies
