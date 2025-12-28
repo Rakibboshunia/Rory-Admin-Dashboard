@@ -1,35 +1,24 @@
-# Modern Dashboard Layout - React + Vite + Tailwind CSS
-
-This project is a modern, responsive dashboard template built with React, Vite, and Tailwind CSS. It features a fixed sidebar, sticky header, and a clean dark theme.
-
-## 🚀 Getting Started
-
-### Prerequisites
-
-- Node.js (v16 or higher recommended)
-- npm or yarn
+### How do you use this Repo for Dashboard...
 
 ### Installation
 
 1. **Clone the repository:**
+
    ```bash
    git clone <repository-url>
    cd <project-folder>
    ```
 
 2. **Install dependencies:**
+
    ```bash
    npm install
    ```
-   > **Note:** If you encounter permission issues on Windows, try running your terminal as Administrator or use `cmd` instead of PowerShell.
 
 3. **Start the development server:**
    ```bash
    npm run dev
    ```
-
-4. **Open your browser:**
-   Visit `http://localhost:5173` to see the dashboard.
 
 ## 📁 Project Structure
 
@@ -96,12 +85,20 @@ const navLinks = [
 ];
 ```
 
-## 🎨 Theme & Styling
+### Dependencies
 
-- **Tailwind CSS**: This project uses Tailwind CSS v4.
-- **Colors**: The primary background color is `#0a1024` with sidebar/header using `#111B3C`.
-- **Icons**: Icons are provided by `lucide-react`.
-
-## 📜 License
-
-This project is open-source and available for use in your personal or commercial projects.
+```
+dependencies: {
+    "@iconify/react": "^6.0.2",
+    "@tanstack/react-query": "^5.0.0",
+    "@tailwindcss/vite": "^4.1.18",
+    "axios": "^1.13.2",
+    "clsx": "^2.1.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-hook-form": "^7.0.0",
+    "react-router-dom": "^7.11.0",
+    "tailwindcss": "^4.1.18",
+    "tailwind-merge": "^2.2.0"
+  },
+```
