@@ -1,16 +1,107 @@
-# React + Vite
+# Modern Dashboard Layout - React + Vite + Tailwind CSS
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a modern, responsive dashboard template built with React, Vite, and Tailwind CSS. It features a fixed sidebar, sticky header, and a clean dark theme.
 
-Currently, two official plugins are available:
+## 🚀 Getting Started
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Prerequisites
 
-## React Compiler
+- Node.js (v16 or higher recommended)
+- npm or yarn
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Installation
 
-## Expanding the ESLint configuration
+1. **Clone the repository:**
+   ```bash
+   git clone <repository-url>
+   cd <project-folder>
+   ```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+   > **Note:** If you encounter permission issues on Windows, try running your terminal as Administrator or use `cmd` instead of PowerShell.
+
+3. **Start the development server:**
+   ```bash
+   npm run dev
+   ```
+
+4. **Open your browser:**
+   Visit `http://localhost:5173` to see the dashboard.
+
+## 📁 Project Structure
+
+```
+src/
+├── components/
+│   └── layout/
+│       ├── Sidebar.jsx       # Navigation sidebar (desktop fixed, mobile drawer)
+│       └── Header.jsx        # Top header (hamburger menu, profile, search)
+├── layout/
+│   └── DashboardLayout.jsx   # Main layout wrapper using Outlet
+├── pages/
+│   └── Home.jsx              # Default dashboard home page
+├── router/
+│   └── router.jsx            # Route definitions
+├── App.jsx
+└── main.jsx
+```
+
+## 🛠️ How to Customize
+
+### 1. Add a New Page
+
+Create a new component in the `src/pages` directory. For example, `src/pages/Users.jsx`.
+
+```jsx
+// src/pages/Users.jsx
+export default function Users() {
+  return <div className="p-4 text-white">Users Management Page</div>;
+}
+```
+
+### 2. Add the Route
+
+Update `src/router/router.jsx` to include your new page.
+
+```jsx
+import Users from "../pages/Users";
+
+// ... inside the children array of DashboardLayout
+children: [
+  {
+    path: "/",
+    element: <Home />,
+  },
+  {
+    path: "/users",
+    element: <Users />,
+  },
+],
+```
+
+### 3. Update the Sidebar Link
+
+Open `src/components/layout/Sidebar.jsx` and add the new link to the `navLinks` array.
+
+```jsx
+import { Users } from "lucide-react"; // Import an icon
+
+const navLinks = [
+  { name: "Dashboard", path: "/", icon: LayoutDashboard },
+  { name: "Users", path: "/users", icon: Users }, // Add this line
+  // ...
+];
+```
+
+## 🎨 Theme & Styling
+
+- **Tailwind CSS**: This project uses Tailwind CSS v4.
+- **Colors**: The primary background color is `#0a1024` with sidebar/header using `#111B3C`.
+- **Icons**: Icons are provided by `lucide-react`.
+
+## 📜 License
+
+This project is open-source and available for use in your personal or commercial projects.
