@@ -17,7 +17,6 @@ export default function DashboardLayout() {
 
         <Header onMenuClick={() => setIsSidebarOpen(!isSidebarOpen)} />
 
-
         <main className="flex-1 overflow-y-auto bg-[#162456] p-4 md:p-6 text-white relative">
           <Outlet />
         </main>
