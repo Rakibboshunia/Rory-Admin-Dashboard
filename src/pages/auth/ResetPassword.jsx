@@ -2,7 +2,7 @@ import AuthLayout from "../../components/auth/AuthLayout";
 import AuthCard from "../../components/auth/AuthCard";
 import AuthInput from "../../components/auth/AuthInput";
 import PrimaryButton from "../../components/auth/PrimaryButton";
-import Logo from "../../assets/images/logo3.png";
+import Logo from "../../../src/Assets/images/logo3.png";
 import BackNextActions from "../../components/auth/BackNextActions";
 
 export default function ResetPassword() {
