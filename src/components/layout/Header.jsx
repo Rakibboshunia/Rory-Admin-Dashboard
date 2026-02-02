@@ -2,7 +2,7 @@ import { useState, useRef, useEffect, useContext } from "react";
 import { Icon } from "@iconify/react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
-import Favicon from "../../Assets/images/favicon.png";
+import Favicon from "../../Assets/images/cartoon-boy.png";
 
 export default function Header({ onMenuClick }) {
   const [open, setOpen] = useState(false);
