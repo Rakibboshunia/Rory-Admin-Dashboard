@@ -5,9 +5,10 @@
   "type": "module",
   "scripts": {
   "dev": "vite",
-  "build": "vite build --debug",
+  "build": "node --trace-uncaught --trace-exit ./node_modules/vite/bin/vite.js build",
   "preview": "vite preview"
-},
+}
+,
   "dependencies": {
     "@iconify/react": "^6.0.2",
     "@tanstack/react-query": "^5.90.12",
