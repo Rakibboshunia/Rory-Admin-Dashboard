@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import AuthLayout from "../../components/auth/AuthLayout";
 import AuthCard from "../../components/auth/AuthCard";
 import AuthInput from "../../components/auth/AuthInput";
@@ -7,6 +7,8 @@ import Logo from "../../../src/Assets/images/logo3.png";
 import BackNextActions from "../../components/auth/BackNextActions";
 
 export default function Login() {
+  const navigate = useNavigate();
+
   return (
     <AuthLayout>
       <AuthCard>
@@ -20,9 +22,9 @@ export default function Login() {
 
         <div className="mt-6 space-y-4">
           {/* Form */}
-            <AuthInput label="Email Address" placeholder="admin@email.com" />
+          <AuthInput label="Email Address" placeholder="admin@email.com" />
 
-            <AuthInput label="Password" type="password" placeholder="********" />
+          <AuthInput label="Password" type="password" placeholder="********" />
 
           {/* Remember + Forgot */}
           <div className="flex items-center justify-between text-sm">
@@ -42,24 +44,9 @@ export default function Login() {
             </Link>
           </div>
 
-          <PrimaryButton>Sign In</PrimaryButton>
+          <PrimaryButton onClick={() => navigate("/")}>Sign In</PrimaryButton>
         </div>
 
-        {/* Back to Home */}
-        <BackNextActions 
-          backTo="/" 
-          showNext={false} 
-        />
-
-        {/* <div className="mt-6 text-center">
-          <Link
-            to="/"
-            className="inline-flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-blue-600 transition"
-          >
-            <Icon icon="heroicons-outline:arrow-left" width={18} />
-            Back to Home
-          </Link>
-        </div> */}
       </AuthCard>
     </AuthLayout>
   );

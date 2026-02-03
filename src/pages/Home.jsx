@@ -65,7 +65,7 @@ export default function Home() {
               </td>
               <td className="px-6 py-6 text-gray-500">{item.date}</td>
               <td className="px-6 py-6">
-                <DeleteAction onClick={() => handleDelete(item.id)} />
+                <DeleteAction onDelete={() => handleDelete(item.id)} />
               </td>
             </>
           )}
