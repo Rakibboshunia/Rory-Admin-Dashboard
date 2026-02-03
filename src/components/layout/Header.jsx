@@ -2,7 +2,7 @@ import { useState, useRef, useEffect, useContext } from "react";
 import { Icon } from "@iconify/react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
-import Favicon from "../../Assets/images/cartoon-boy.png";
+import Favicon from "../../Assets/images/favicon.png";
 
 export default function Header({ onMenuClick }) {
   const [open, setOpen] = useState(false);
@@ -31,7 +31,7 @@ export default function Header({ onMenuClick }) {
 
       <div className="flex items-center gap-2 flex-1 justify-center">
         <img src={Favicon} className="h-6 md:h-10" />
-        <h1 className="text-md sm:text-xl md:text-2xl font-semibold bg-linear-to-r from-[#9810FA] to-[#155DFC] bg-clip-text text-transparent">
+        <h1 className="text-[15px] sm:text-xl md:text-2xl font-semibold bg-linear-to-r from-[#9810FA] to-[#155DFC] bg-clip-text text-transparent">
           SOUNDTRACK MY NIGHT
         </h1>
         <img src={Favicon} className="h-6 md:h-10 scale-x-[-1]" />
@@ -41,7 +41,7 @@ export default function Header({ onMenuClick }) {
       <div className="relative" ref={dropdownRef}>
         <button
           onClick={() => setOpen(!open)}
-          className="flex items-center gap-2 px-2 py-1 hover:bg-gray-100 rounded-lg"
+          className="flex items-center gap-2 px-2 py-1 hover:bg-gray-100 rounded-lg cursor-pointer transition"
         >
           <div className="h-18 w-18 rounded-full overflow-hidden bg-gray-200 flex items-center justify-center">
             <img
@@ -60,7 +60,7 @@ export default function Header({ onMenuClick }) {
         </button>
 
         {open && (
-          <div className="absolute right-0 mt-2 w-44 bg-white border rounded-lg shadow-lg">
+          <div className="absolute right-0 mt-1 w-42 bg-white rounded-lg shadow-lg border border-gray-300 overflow-hidden z-20">
             <button
               onClick={() => {
                 setOpen(false);

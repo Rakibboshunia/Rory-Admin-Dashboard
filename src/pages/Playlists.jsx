@@ -4,7 +4,8 @@ import SearchBar from "../components/common/SearchBar";
 import TableWrapper from "../components/common/TableWrapper";
 import Table from "../components/common/Table";
 import Badge from "../components/common/Badge";
-import { Icon } from "@iconify/react";
+import DeleteAction from "../components/common/DeleteAction";
+import FilterDropdown from "../components/common/FilterDropdown";
 
 const initialPlaylists = [
   { id: 1, user: "rakibul@example.com", title: "Groovy Sunset Vibes", type: "Free", date: "15 mins ago" },
@@ -16,13 +17,18 @@ const initialPlaylists = [
 export default function Playlists() {
   const [playlists, setPlaylists] = useState(initialPlaylists);
   const [search, setSearch] = useState("");
+  const [filterOpen, setFilterOpen] = useState(false);
+  const [typeFilter, setTypeFilter] = useState(""); // "", "Free", "Paid"
 
-  const filtered = playlists.filter(p =>
-    p.user.toLowerCase().includes(search.toLowerCase())
+  // 🔍 search + filter combined
+  const filteredPlaylists = playlists.filter(
+    (p) =>
+      p.user.toLowerCase().includes(search.toLowerCase()) &&
+      (typeFilter === "" || p.type === typeFilter)
   );
 
   const handleDelete = (id) => {
-    setPlaylists(prev => prev.filter(p => p.id !== id));
+    setPlaylists((prev) => prev.filter((p) => p.id !== id));
   };
 
   return (
@@ -32,27 +38,36 @@ export default function Playlists() {
         subtitle="View all generated playlists"
       />
 
-      <SearchBar
-        placeholder="Search by email..."
-        onSearch={setSearch}
-      />
+      {/* Search + Filter */}
+      <div className="relative">
+        <SearchBar
+          placeholder="Search by email..."
+          onSearch={setSearch}
+          onFilterClick={() => setFilterOpen((prev) => !prev)}
+        />
+
+        <FilterDropdown
+          open={filterOpen}
+          onClose={() => setFilterOpen(false)}
+          selected={typeFilter}
+          onChange={setTypeFilter}
+        />
+      </div>
 
       <TableWrapper title="Playlists">
         <Table
           columns={["User", "Playlist Title", "Type", "Date", "Action"]}
-          data={filtered}
+          data={filteredPlaylists}
           renderRow={(p) => (
             <>
               <td className="px-6 py-6">{p.user}</td>
               <td className="px-6 py-6">{p.title}</td>
-              <td className="px-6 py-6"><Badge type={p.type} /></td>
+              <td className="px-6 py-6">
+                <Badge type={p.type} />
+              </td>
               <td className="px-6 py-6">{p.date}</td>
               <td className="px-6 py-6">
-                <Icon
-                  icon="mdi:delete-outline"
-                  className="text-red-500 text-2xl cursor-pointer hover:scale-110 transition"
-                  onClick={() => handleDelete(p.id)}
-                />
+                <DeleteAction onDelete={() => handleDelete(p.id)} />
               </td>
             </>
           )}

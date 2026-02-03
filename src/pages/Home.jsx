@@ -5,7 +5,7 @@ import StatsCard from "../components/common/StatsCard";
 import TableWrapper from "../components/common/TableWrapper";
 import Table from "../components/common/Table";
 import Badge from "../components/common/Badge";
-import { Icon } from "@iconify/react";
+import DeleteAction from "../components/common/DeleteAction";
 
 const stats = [
   { icon: "mdi:account-group", value: "2,847", label: "Total Users", trend: "+12%" },
@@ -25,7 +25,6 @@ export default function Home() {
   const navigate = useNavigate();
   const [activities, setActivities] = useState(initialActivities);
 
-  // 🔥 delete handler
   const handleDelete = (id) => {
     setActivities((prev) => prev.filter((item) => item.id !== id));
   };
@@ -48,7 +47,7 @@ export default function Home() {
         actionSlot={
           <button
             onClick={() => navigate("/playlists")}
-            className="text-sm text-blue-600 hover:underline"
+            className="text-md font-bold text-blue-600 hover:underline cursor-pointer"
           >
             View All
           </button>
@@ -66,11 +65,7 @@ export default function Home() {
               </td>
               <td className="px-6 py-6 text-gray-500">{item.date}</td>
               <td className="px-6 py-6">
-                <Icon
-                  icon="mdi:delete-outline"
-                  className="text-red-500 text-2xl cursor-pointer hover:scale-110 transition"
-                  onClick={() => handleDelete(item.id)}
-                />
+                <DeleteAction onClick={() => handleDelete(item.id)} />
               </td>
             </>
           )}

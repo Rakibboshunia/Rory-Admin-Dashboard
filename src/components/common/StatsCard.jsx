@@ -4,10 +4,11 @@ export default function StatsCard({ icon, value, label, trend }) {
   return (
     <div
       className="
-        bg-white border rounded-2xl
+        bg-white rounded-2xl
         p-4 sm:p-5 md:p-6
         flex flex-col justify-between
-        min-h-[150px] sm:min-h-[170px]
+        min-h-37 sm:min-h-42 md:min-h-45
+        shadow
       "
     >
       {/* Top row: icon (left) + trend (right) */}
@@ -29,7 +30,7 @@ export default function StatsCard({ icon, value, label, trend }) {
 
       {/* Bottom content */}
       <div className="mt-6">
-        <div className="text-2xl sm:text-3xl font-bold text-gray-900">
+        <div className="text-2xl sm:text-2xl md:text-3xl font-semibold text-gray-900">
           {value}
         </div>
         <p className="text-sm sm:text-base text-gray-500 mt-1">

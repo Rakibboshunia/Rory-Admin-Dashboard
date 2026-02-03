@@ -4,7 +4,8 @@ import SearchBar from "../components/common/SearchBar";
 import TableWrapper from "../components/common/TableWrapper";
 import Table from "../components/common/Table";
 import Badge from "../components/common/Badge";
-import { Icon } from "@iconify/react";
+import DeleteAction from "../components/common/DeleteAction";
+import FilterDropdown from "../components/common/FilterDropdown";
 
 const initialUsers = [
   { id: 1, email: "sarah.johnson@email.com", date: "Jan 24, 2026", playlists: 3, status: "Paid" },
@@ -16,13 +17,17 @@ const initialUsers = [
 export default function Users() {
   const [users, setUsers] = useState(initialUsers);
   const [search, setSearch] = useState("");
+  const [filterOpen, setFilterOpen] = useState(false);
+  const [statusFilter, setStatusFilter] = useState(""); // "", "Free", "Paid"
 
-  const filteredUsers = users.filter(u =>
-    u.email.toLowerCase().includes(search.toLowerCase())
+  const filteredUsers = users.filter(
+    (u) =>
+      u.email.toLowerCase().includes(search.toLowerCase()) &&
+      (statusFilter === "" || u.status === statusFilter)
   );
 
   const handleDelete = (id) => {
-    setUsers(prev => prev.filter(u => u.id !== id));
+    setUsers((prev) => prev.filter((u) => u.id !== id));
   };
 
   return (
@@ -32,27 +37,42 @@ export default function Users() {
         subtitle="Manage and view all platform users"
       />
 
-      <SearchBar
-        placeholder="Search by email..."
-        onSearch={setSearch}
-      />
+      {/* Search + Filter */}
+      <div className="relative">
+        <SearchBar
+          placeholder="Search by email..."
+          onSearch={setSearch}
+          onFilterClick={() => setFilterOpen((p) => !p)}
+        />
+
+        <FilterDropdown
+          open={filterOpen}
+          onClose={() => setFilterOpen(false)}
+          selected={statusFilter}
+          onChange={setStatusFilter}
+        />
+      </div>
 
       <TableWrapper title="Users List">
         <Table
-          columns={["User Email", "Quiz Completed Date", "Create Playlist", "Status", "Actions"]}
+          columns={[
+            "User Email",
+            "Quiz Completed Date",
+            "Create Playlist",
+            "Status",
+            "Actions",
+          ]}
           data={filteredUsers}
           renderRow={(u) => (
             <>
               <td className="px-6 py-6">{u.email}</td>
               <td className="px-6 py-6">{u.date}</td>
               <td className="px-6 py-6">{u.playlists}</td>
-              <td className="px-6 py-6"><Badge type={u.status} /></td>
               <td className="px-6 py-6">
-                <Icon
-                  icon="mdi:delete-outline"
-                  className="text-red-500 text-2xl cursor-pointer hover:scale-110 transition"
-                  onClick={() => handleDelete(u.id)}
-                />
+                <Badge type={u.status} />
+              </td>
+              <td className="px-6 py-6">
+                <DeleteAction onDelete={() => handleDelete(u.id)} />
               </td>
             </>
           )}

@@ -1,7 +1,7 @@
 export default function Table({ columns, data, renderRow }) {
   return (
     <table className="w-full text-md">
-      <thead className="text-gray-500 border-b">
+      <thead className="text-gray-500 border-b border-gray-200">
         <tr>
           {columns.map((col) => (
             <th
@@ -18,7 +18,7 @@ export default function Table({ columns, data, renderRow }) {
         {data.map((item, i) => (
           <tr
             key={i}
-            className="border-b last:border-0"
+            className="border-b border-gray-200 last:border-0"
           >
             {/* enforce row height via td wrapper */}
             {renderRow(item).map

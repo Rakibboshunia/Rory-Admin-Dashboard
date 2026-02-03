@@ -60,13 +60,12 @@ export default function EditProfileModal({
                 inline-block
                 text-sm
                 border
-                border-gray-300
+                border-red-300
                 rounded-md
                 px-3
                 py-1.5
                 cursor-pointer
-                hover:border-gray-400
-                hover:bg-gray-50
+                hover:bg-red-100
                 transition"
           >
             Change photo

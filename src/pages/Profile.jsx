@@ -42,7 +42,7 @@ export default function Profile() {
         </div>
 
         <PrimaryButton
-          className="flex items-center gap-2 border px-4 py-2 rounded-xl cursor-pointer hover:bg-red-200 transition"
+          className="flex items-center gap-2 px-4 py-2 rounded-xl cursor-pointer hover:bg-red-100 transition shadow border border-gray-300"
           onClick={() => setPasswordOpen(true)}
         >
           <Icon icon="mdi:lock-outline" />
@@ -51,12 +51,12 @@ export default function Profile() {
       </div>
 
       {/* Info Card */}
-      <div className="bg-white border rounded-xl p-6 max-w-3xl">
+      <div className="bg-white rounded-xl p-6 max-w-3xl shadow">
         <div className="flex justify-between items-center mb-6">
           <h3 className="font-semibold text-lg">Profile Information</h3>
 
           <PrimaryButton
-            className="flex items-center gap-2 cursor-pointer border px-4 py-2 rounded-xl hover:bg-blue-100 transition"
+            className="flex items-center gap-2 cursor-pointer px-4 py-2 rounded-xl hover:bg-blue-100 transition shadow border border-gray-300"
             onClick={() => setEditOpen(true)}
           >
             <Icon icon="mdi:pencil-outline" />
@@ -70,7 +70,7 @@ export default function Profile() {
             <input
               disabled
               value={user.name}
-              className="w-full mt-1 border rounded-lg px-4 py-2 bg-gray-50"
+              className="w-full mt-1 rounded-lg px-4 py-2 bg-gray-50 shadow"
             />
           </div>
 
@@ -79,7 +79,7 @@ export default function Profile() {
             <input
               disabled
               value={user.email}
-              className="w-full mt-1 border rounded-lg px-4 py-2 bg-gray-50"
+              className="w-full mt-1 rounded-lg px-4 py-2 bg-gray-50 shadow"
             />
           </div>
         </div>
